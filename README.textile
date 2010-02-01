@@ -1,0 +1,7 @@
+h1. XEN:Deploy
+
+A collection of recipes, tasks, and strategies for managing non-rails applications specifically WordPress, WP-MU and BuddyPress.
+
+<hr />
+
+h2. Install
