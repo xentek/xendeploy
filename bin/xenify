@@ -48,8 +48,8 @@ files = {
   FILE
 
   "_assets/deploy.rb" => unindent(<<-FILE),
-    set :application, "xentek.net"
-    set :homeuser, "username"
+    set :application, ""
+    set :homeuser, ""
     set :location, "/home/\#{homeuser}/www/\#{application}"
     set :deploy_to, "\#{location}/.deploy"
 
@@ -64,6 +64,10 @@ files = {
 
     # if everything's on one server, then it will use the application value
     server application, :app, :web, :db, :primary => true
+
+    # set your db credentials for dumping and restoring sql files
+    set :dbname, ""
+    set :dbuser, ""
 
     # this should make it a bit easier to use your public key on all your servers
     set :ssh_options, { :forward_agent => true }
@@ -87,4 +91,4 @@ files.each do |file, content|
   end
 end
 
-puts "[done] capified!"
+puts "[done] xenified!"
