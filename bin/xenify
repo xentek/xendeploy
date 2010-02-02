@@ -72,6 +72,7 @@ files = {
     # this should make it a bit easier to use your public key on all your servers
     set :ssh_options, { :forward_agent => true }
     ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
+    
 FILE
 }
 
