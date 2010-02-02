@@ -5,3 +5,11 @@ A collection of recipes, tasks, and strategies for managing non-rails applicatio
 <hr />
 
 h2. Install
+
+h3. Use
+
+XEN:Deploy ships with its own capify script. This script should be run from the root of your application. It will create the standard Capfile, but put the deploy.rb script in "_assets/" instead of config.
+
+h4. Configuration
+
+Configure your deployment in deploy.rb, setting the values of the symbols there-in.

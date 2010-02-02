@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'fileutils'
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} [path]"
+
+  opts.on("-h", "--help", "Displays this help info") do
+    puts opts
+    exit 0
+  end
+
+  begin
+    opts.parse!(ARGV)
+  rescue OptionParser::ParseError => e
+    warn e.message
+    puts opts
+    exit 1
+  end
+end
+
+if ARGV.empty?
+  abort "Please specify the directory to xenify, e.g. `#{File.basename($0)} .'"
+elsif !File.exists?(ARGV.first)
+  abort "`#{ARGV.first}' does not exist."
+elsif !File.directory?(ARGV.first)
+  abort "`#{ARGV.first}' is not a directory."
+elsif ARGV.length > 1
+  abort "Too many arguments; please specify only the directory to xenify."
+end
+
+def unindent(string)
+  indentation = string[/\A\s*/]
+  string.strip.gsub(/^#{indentation}/, "")
+end
+
+def writefile(file,content)
+  puts "[add] writing `#{file}'"
+  File.open(file, "w") { |f| f.write(content) }
+end
+
+files = {
+  "Capfile" => unindent(<<-FILE),
+    load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+    load '_assets/deploy'
+    
+  FILE
+
+  "_assets/deploy.rb" => unindent(<<-FILE),
+    set :application, "xentek.net"
+    set :homeuser, "username"
+    set :location, "/home/\#{homeuser}/www/\#{application}"
+    set :deploy_to, "\#{location}/.deploy"
+
+    set :repository, ""
+    set :scm, :subversion
+    set :scm_verbose,  true
+
+    # uncomment these lines if you have a multi-tier set up
+    # role :app, "your app-server here"
+    # role :web, "your web-server here"
+    # role :db,  "your db-server here", :primary => true
+
+    # if everything's on one server, then it will use the application value
+    server application, :app, :web, :db, :primary => true
+
+    # this should make it a bit easier to use your public key on all your servers
+    set :ssh_options, { :forward_agent => true }
+    ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
+FILE
+}
+
+base = ARGV.shift
+files.each do |file, content|
+  file = File.join(base, file)
+  if File.exists?(file)
+    warn "[skip] `#{file}' already exists"
+  elsif File.exists?(file.downcase)
+    warn "[skip] `#{file.downcase}' exists, which could conflict with `#{file}'"
+  elsif !File.exists?(File.dirname(file))
+    FileUtils.mkdir(File.dirname(file))
+    warn "[add] directory `#{File.dirname(file)}' did not exist. created."
+    writefile(file,content)
+  else
+    writefile(file,content)
+  end
+end
+
+puts "[done] capified!"
