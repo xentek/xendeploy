@@ -3,6 +3,9 @@ unless Capistrano::Configuration.respond_to?(:instance)
 end
 
 require "#{File.dirname(__FILE__)}/xendeploy/deprec_extensions"
-require "#{File.dirname(__FILE__)}/xendeploy/recipes/build"
-require "#{File.dirname(__FILE__)}/xendeploy/recipes/deploy"
-require "#{File.dirname(__FILE__)}/xendeploy/recipes/server"
+
+# Load recipes.
+recipes = Dir[File.dirname(__FILE__) + "/recipes/*.rb"].collect { |recipe| File.expand_path(recipe) }
+recipes.each do |recipe|
+  Capistrano::Configuration.instance.load recipe
+end
