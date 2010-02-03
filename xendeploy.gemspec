@@ -2,7 +2,7 @@ require 'rubygems'
  
 SPEC = Gem::Specification.new do |s|
   s.name = 'xendeploy'
-  s.version = '0.10'
+  s.version = '0.10.1'
   
   s.authors = ['Eric Marden']
   s.description = <<-EOF
