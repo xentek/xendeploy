@@ -12,7 +12,7 @@ recipes = Dir[File.dirname(__FILE__) + "/recipes/*.rb"].collect { |recipe| File.
 recipes.each do |recipe|
   Capistrano::Configuration.instance.load recipe
 
-    namespace "xen:#{recipe}" do
+    namespace "deploy:#{recipe}" do
       desc "Check #{recipe.capitalize}"
       task :check do
         puts "checked #{recipe}"

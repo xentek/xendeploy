@@ -1,7 +1,7 @@
 Capistrano::Configuration.instance(:must_exist).load do
 
-  # namespace :xen do
-    namepace :deploy do
+  namespace :xen do
+    namespace :deploy do
 
       task :default do
         update
@@ -25,5 +25,6 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
 
     end
-  # end
+  end
+
 end

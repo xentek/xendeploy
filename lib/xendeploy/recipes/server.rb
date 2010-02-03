@@ -1,5 +1,6 @@
 Capistrano::Configuration.instance(:must_exist).load do
-  namespace :deploy do
+
+  namespace :xen do
     namespace :server do
   
       namespace :apache do
@@ -35,6 +36,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
   
       namespace :mysql do
+
         task :restart, :roles => db do
           sudo "/etc/init.d/mysql restart"
         end
@@ -46,8 +48,10 @@ Capistrano::Configuration.instance(:must_exist).load do
         task :restore, :roles =>db do
           run "mysql -u #{dbuser} -p < #{shared_path}/sql/#{dbname}-#{release_name}.sql"
         end
+      
       end
   
     end
   end
+
 end
