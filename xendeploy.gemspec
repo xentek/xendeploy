@@ -16,7 +16,7 @@ EOF
   s.add_dependency('capistrano', '> 2.5.0')
   s.add_dependency('deprec', '> 2.1.5')
   candidates = Dir.glob("{bin,docs,lib}/**/*")
-  candidates.concat(%w(CHANGELOG COPYING LICENSE README THANKS))
+  candidates.concat(%w(README.textile))
   s.files = candidates.delete_if do |item|
     item.include?("CVS") || item.include?("rdoc")
   end
