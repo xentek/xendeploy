@@ -37,15 +37,15 @@ Capistrano::Configuration.instance(:must_exist).load do
   
       namespace :mysql do
 
-        task :restart, :roles => db do
+        task :restart, :roles => :db do
           sudo "/etc/init.d/mysql restart"
         end
   
-        task :backup, :roles => db do
+        task :backup, :roles => :db do
           run "mysqldump --add-drop-database #{dbname} > #{shared_path}/sql/#{dbname}-#{release_name}.sql"
         end
   
-        task :restore, :roles =>db do
+        task :restore, :roles => :db do
           run "mysql -u #{dbuser} -p < #{shared_path}/sql/#{dbname}-#{release_name}.sql"
         end
       
