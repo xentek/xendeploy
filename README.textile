@@ -2,15 +2,17 @@ h1. XEN:Deploy
 
 A collection of recipes, tasks, and strategies for managing non-rails applications specifically WordPress, WP-MU and BuddyPress.
 
+This software should be considered _alpha_ and not used for anything useful… yet.
 <hr />
 
 h2. Install
 
+<code>gem install xendeploy</code>
+
 *Dependencies*
 
-*railsless-deploy*
-For making the default tasks a bit more app agnostic.
-<code>gem install railsless-deploy -s http://gemcutter.org</code>
+*capistrano*
+Obviously. :)
 
 *capistrano-ext*
 For doing multistage configurations
