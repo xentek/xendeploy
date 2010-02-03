@@ -6,6 +6,6 @@ unless Capistrano::Configuration.respond_to?(:instance)
 end
 
 require "#{File.dirname(__FILE__)}/xendeploy/deprec_extensions"
-Capistrano::Configuration.instance.load File.dirname(__FILE__) + "/xendeploy/recipes/deploy.rb"
-Capistrano::Configuration.instance.load File.dirname(__FILE__) + "/xendeploy/recipes/build.rb"
-Capistrano::Configuration.instance.load File.dirname(__FILE__) + "/xendeploy/recipes/server.rb"
+load File.dirname(__FILE__) + "/xendeploy/recipes/deploy.rb"
+load File.dirname(__FILE__) + "/xendeploy/recipes/build.rb"
+load File.dirname(__FILE__) + "/xendeploy/recipes/server.rb"
