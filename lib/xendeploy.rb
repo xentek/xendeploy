@@ -11,4 +11,13 @@ require "#{File.dirname(__FILE__)}/xendeploy/deprec_extensions"
 recipes = Dir[File.dirname(__FILE__) + "/recipes/*.rb"].collect { |recipe| File.expand_path(recipe) }
 recipes.each do |recipe|
   Capistrano::Configuration.instance.load recipe
+    namespace "xen:#{package}" do
+
+      desc "Check #{package.capitalize}"
+      task :check do
+      end
+
+    end
+  end
+  
 end
