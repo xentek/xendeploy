@@ -49,7 +49,7 @@ files = {
     
   FILE
 
-  "_assets/deploy.rb" => unindent(<<-FILE),
+  "_assets/deploy/prod.rb" => unindent(<<-FILE),
     set :application, ""
     set :homeuser, ""
     set :location, "/home/\#{homeuser}/www/\#{application}"
