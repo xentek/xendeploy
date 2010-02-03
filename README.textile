@@ -6,9 +6,18 @@ A collection of recipes, tasks, and strategies for managing non-rails applicatio
 
 h2. Install
 
+*Dependencies*
+
+*railsless-deploy*
+For making the default tasks a bit more app agnostic.
+<code>gem install railsless-deploy -s http://gemcutter.org</code>
+
+*capistrano-ext*
+For doing multistage configurations
+
 h3. Use
 
-XEN:Deploy ships with its own capify script. This script should be run from the root of your application. It will create the standard Capfile, but put the deploy.rb script in "_assets/" instead of config.
+XEN:Deploy ships with its own capify script. This script should be run from the root of your application. It will create a standard enough Capfile, but put the deploy.rb script in "_assets/" instead of config.
 
 h4. Configuration
 
