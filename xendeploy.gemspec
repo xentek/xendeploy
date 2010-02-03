@@ -2,7 +2,7 @@ require 'rubygems'
  
 SPEC = Gem::Specification.new do |s|
   s.name = 'xendeploy'
-  s.version = '0.1'
+  s.version = '0.2'
   
   s.authors = ['Eric Marden']
   s.description = <<-EOF
@@ -14,7 +14,7 @@ EOF
  
   s.require_paths = ['lib']
   s.add_dependency('capistrano', '> 2.5.0')
-  s.add_dependency('deprec', '> 2.1.5')
+  s.add_dependency('deprec', '> 2.0.0')
   candidates = Dir.glob("{bin,docs,lib}/**/*")
   candidates.concat(%w(README.textile))
   s.files = candidates.delete_if do |item|
