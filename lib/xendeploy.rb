@@ -3,3 +3,6 @@ unless Capistrano::Configuration.respond_to?(:instance)
 end
 
 require "#{File.dirname(__FILE__)}/xendeploy/deprec_extensions"
+require "#{File.dirname(__FILE__)}/xendeploy/build"
+require "#{File.dirname(__FILE__)}/xendeploy/deploy"
+require "#{File.dirname(__FILE__)}/xendeploy/server"
