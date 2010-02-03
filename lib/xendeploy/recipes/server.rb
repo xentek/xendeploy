@@ -1,5 +1,5 @@
 Capistrano::Configuration.instance(:must_exist).load do
-  namespace :xen do
+  namespace :deploy do
     namespace :server do
   
       namespace :apache do
