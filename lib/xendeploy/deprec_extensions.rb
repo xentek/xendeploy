@@ -1,5 +1,5 @@
 require 'capistrano'
-require 'deprec'
+# require 'deprec'
 
 module Xendeploy
  
