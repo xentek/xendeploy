@@ -3,6 +3,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :xen do
     namespace :build do
 
+      "Default Build"
       task :default do
         puts "default build"
       end

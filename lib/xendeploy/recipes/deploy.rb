@@ -3,6 +3,7 @@ Capistrano::Configuration.instance(:must_exist).load do
   namespace :xen do
     namespace :deploy do
 
+      desc "Deploys your app the xentek way"
       task :default do
         update
         update_code
